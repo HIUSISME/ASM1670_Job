@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<ASM1670_Job.Models.Job>
+
+<h1>Job List</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Company A</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .text-center {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .job-listings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Sử dụng CSS Grid */
+            gap: 20px;
+        }
+
+        .job {
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #ffd700; 
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+            .job:hover {
+                transform: translateY(-5px);
+            }
+
+        .card {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .btn-outline-secondary {
+            border: 1px solid #007bff;
+            color: #007bff;
+            background-color: transparent;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-outline-secondary:hover {
+                background-color: #007bff;
+                color: #fff;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1>Welcome to job search application</h1>
+            <p>We're glad to have you here!</p>
+        </div>
+
+        <div class="job-listings">
+            @foreach (var job in Model)
+            {
+                <div class="job">
+                    <div class="card mb-4 shadow-sm">
+                        @* <img class="card-img-top" src="@job.Image" alt="Job Image"> *@
+                        <div class="card-body">
+                            <h5 class="card-title">@job.Description</h5>
+                            <p class="card-text">@job.Title</p>
+                            <p class="card-text">Salary: @job.Salary $</p>
+                            <p class="card-text">Application Deadline: @job.DeadLine.ToShortDateString()</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="@Url.Action("Details", "Jobs", new { id = job.Id })" class="btn btn-sm btn-outline-secondary"> Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

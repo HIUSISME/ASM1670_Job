@@ -1,0 +1,131 @@
+﻿@model IEnumerable<ASM1670_Job.Models.Employer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <button class="btn-create" onclick="location.href='@Url.Action("Create")'">Create New</button>
+</p>
+<div class="table-wrapper">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Company Name</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Age)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                    <td>@Html.DisplayFor(modelItem => item.User_Id.Email)</td>
+                    <td>
+                        <button class="btn-edit" onclick="location.href='@Url.Action("Edit", new { id = item.Id })'">Edit</button>
+                        <button class="btn-details" onclick="location.href='@Url.Action("Details", new { id = item.Id })'">Details</button>
+                        <button class="btn-delete" onclick="location.href='@Url.Action("Delete", new { id = item.Id })'">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        background-color: #f3f4f6;
+        border-radius: 5px;
+    }
+
+        .table th,
+        .table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #e0e6f0;
+            color: #333;
+        }
+
+        .table td {
+            background-color: #ffffff;
+            color: #444;
+        }
+
+        .table tr:hover {
+            background-color: #dbe5f1;
+        }
+
+    .btn-create {
+        border: none;
+        padding: 5px 10px;
+        margin-right: 5px;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: #007bff;
+        color: #fff;
+    }
+    .btn-edit {
+        border: none;
+        padding: 5px 10px;
+        margin-right: 5px;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: #ff9999
+        ;
+        color: #fff;
+    }
+    .btn-details {
+        border: none;
+        padding: 5px 10px;
+        margin-right: 5px;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: #ffa500
+        ;
+        color: #fff;
+    }
+    .btn-delete {
+        border: none;
+        padding: 5px 10px;
+        margin-right: 5px;
+        cursor: pointer;
+        border-radius: 3px;
+        background-color: #ff0000;
+        color: #fff;
+    }
+
+        .btn-create:hover {
+        background-color: #00008b;
+    }
+        .btn-edit:hover {
+        background-color: #ff8080;
+    }
+
+    .btn-details:hover {
+        background-color: #ff8c00;
+    }
+        .btn-delete:hover {
+            background-color: #b22222
+            ;
+        }
+</style>
